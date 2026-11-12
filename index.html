@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ULANI — A Taste of Freedom</title>
+<meta name="description" content="ULANI: The African Cultural Experience. Joy · Culture · Freedom · Heritage · Future. 2027 unlocks Mam' Winnie Madikizela-Mandela.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:ital,wght@0,400;0,500;0,600;0,800;0,900;1,700;1,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#e9dbc1; --ivory-2:#f3e9d6; --paper:#e4d4b8;
+  --gold:#c8922f; --gold-2:#e2b45a; --gold-3:#f2d491; --bronze:#8a5a1c;
+  --forest:#0d3a14; --forest-2:#08240c; --ink:#070806; --black:#0a0907;
+  --text-dark:#1c140b; --muted-dark:rgba(28,20,11,.7);
+  --cream:#f4ead6; --muted:rgba(244,234,214,.7); --line:rgba(226,180,90,.35);
+  --cinzel:'Cinzel', Georgia, serif;
+  --serif:'Cormorant Garamond', Georgia, serif;
+  --sans:'Montserrat', system-ui, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--cream);font-family:var(--serif);font-size:19px;line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{display:block;max-width:100%}
+::selection{background:var(--gold);color:#fff}
+
+/* paper grain overlay */
+.grain::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .3 0 0 0 0 .15 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* labels */
+.label{font-family:var(--cinzel);font-size:13px;font-weight:600;letter-spacing:.42em;text-transform:uppercase}
+.values{font-family:var(--cinzel);font-size:12.5px;letter-spacing:.32em;text-transform:uppercase;display:flex;justify-content:center;flex-wrap:wrap;gap:6px 18px}
+.values span:not(:last-child)::after{content:".";margin-left:18px;color:var(--gold)}
+
+/* sparkle star */
+.spark{display:inline-block;width:22px;height:22px;background:currentColor;clip-path:polygon(50% 0,58% 42%,100% 50%,58% 58%,50% 100%,42% 58%,0 50%,42% 42%)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:16px clamp(20px,4vw,48px);transition:background .4s,color .4s,box-shadow .4s;color:var(--text-dark)}
+nav.scrolled{background:rgba(10,9,7,.86);backdrop-filter:blur(14px);color:var(--cream);box-shadow:0 1px 0 var(--line)}
+.brand{font-family:var(--cinzel);font-weight:900;font-size:22px;letter-spacing:.14em;text-decoration:none}
+nav ul{display:flex;gap:30px;list-style:none}
+nav ul a{font-family:var(--cinzel);font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;opacity:.75;transition:opacity .2s,color .2s}
+nav ul a:hover{opacity:1;color:var(--gold)}
+.pill{font-family:var(--sans);font-weight:800;font-size:11px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding:11px 20px;border:1.5px solid var(--gold);color:var(--gold);transition:all .25s}
+.pill:hover{background:var(--gold);color:#fff}
+@media(max-width:960px){nav ul{display:none}}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden;color:var(--text-dark);
+  background:radial-gradient(ellipse 80% 90% at 50% 35%,#f1e6d0 0%,#e6d5b8 50%,#dac3a2 100%);padding:110px 20px 70px}
+.frame{position:absolute;inset:22px;border:1px solid rgba(255,255,255,.75);pointer-events:none;z-index:3}
+.frame::before{content:"";position:absolute;inset:10px;border:1px solid rgba(200,146,47,.35)}
+.horn{position:absolute;bottom:4%;width:min(42vw,620px);z-index:1;pointer-events:none;
+  -webkit-mask-image:radial-gradient(ellipse 58% 58% at 50% 54%,#000 52%,transparent 74%);mask-image:radial-gradient(ellipse 58% 58% at 50% 54%,#000 52%,transparent 74%);
+  transition:transform .2s linear}
+.horn.l{left:-3vw}.horn.r{right:-3vw}
+.hero-inner{position:relative;z-index:2;text-align:center;max-width:620px;display:flex;flex-direction:column;align-items:center}
+.emblem{width:min(330px,62vw);aspect-ratio:1;border-radius:50%;overflow:hidden;box-shadow:0 30px 60px -25px rgba(40,25,5,.55);animation:float 8s ease-in-out infinite}
+.emblem img{width:100%;height:100%}
+@keyframes slowspin{to{transform:rotate(360deg)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.presents{font-family:var(--sans);font-weight:800;font-style:italic;letter-spacing:.24em;font-size:15px;margin-top:30px;color:var(--text-dark)}
+.hero h1{font-family:var(--cinzel);font-weight:700;font-size:clamp(30px,4.6vw,54px);letter-spacing:.08em;line-height:1.08;margin-top:12px;color:var(--text-dark)}
+.hero h1 em{display:block;font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:0;color:var(--bronze);font-size:.82em;margin-top:6px}
+.tagline{font-family:var(--cinzel);font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted-dark);margin-top:18px;line-height:1.9}
+.countdown{display:flex;gap:clamp(8px,1.6vw,16px);margin-top:30px}
+.cd{min-width:clamp(66px,11vw,92px);padding:12px 6px 9px;border:1px solid rgba(138,90,28,.45);background:rgba(255,250,240,.35);text-align:left;padding-left:12px}
+.cd b{display:block;font-family:var(--cinzel);font-weight:700;font-size:clamp(26px,3.6vw,38px);color:var(--text-dark);line-height:1}
+.cd span{font-family:var(--cinzel);font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--bronze)}
+.cd-note{font-family:var(--cinzel);font-weight:600;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--bronze);margin-top:16px}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 28px;font-family:var(--sans);font-weight:800;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:transform .25s,box-shadow .25s,background .25s,color .25s}
+.btn-dark{background:var(--black);color:var(--gold-3)}
+.btn-dark:hover{transform:translateY(-2px);box-shadow:0 16px 36px -14px rgba(0,0,0,.6)}
+.btn-line{border:1.5px solid var(--text-dark);color:var(--text-dark)}
+.btn-line:hover{background:var(--text-dark);color:var(--ivory)}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{background:var(--gold-2);transform:translateY(-2px)}
+.btn-ghost{border:1.5px solid var(--gold-2);color:var(--gold-3)}
+.btn-ghost:hover{background:var(--gold-2);color:var(--black)}
+.hero .values{margin-top:34px;color:var(--text-dark)}
+@media(max-width:820px){
+  .horn{width:62vw;bottom:auto;top:62%;opacity:.55}
+  .horn.l{left:-22vw}.horn.r{right:-22vw}
+}
+
+/* MARQUEE */
+.marquee{background:var(--black);color:var(--gold-2);overflow:hidden;white-space:nowrap;border-block:1px solid var(--line)}
+.marquee-track{display:inline-flex;animation:marq 46s linear infinite;padding:18px 0}
+.marquee span{font-family:var(--cinzel);font-weight:700;font-size:clamp(16px,2vw,22px);letter-spacing:.3em;padding:0 30px;display:inline-flex;align-items:center;gap:60px}
+.marquee span::after{content:"";width:14px;height:14px;background:var(--gold-2);clip-path:polygon(50% 0,58% 42%,100% 50%,58% 58%,50% 100%,42% 58%,0 50%,42% 42%)}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+section{position:relative;padding:clamp(90px,11vw,140px) clamp(20px,5vw,64px)}
+.wrap{max-width:1200px;margin:0 auto;position:relative;z-index:2}
+.green{background:radial-gradient(ellipse 120% 70% at 30% 0%,#14501c 0%,#0b2f10 35%,#060c05 75%,#050604 100%);overflow:hidden}
+.ivory{background:radial-gradient(ellipse at 50% 30%,#f2e7d2,#e6d6ba 60%,#d8c4a1);color:var(--text-dark)}
+.sec-head{display:flex;align-items:center;gap:16px}
+.sec-head .num{font-family:var(--cinzel);font-size:15px;color:var(--gold-2)}
+.sec-head .label{color:var(--cream)}
+.sec-head .spark{color:var(--gold-3);width:18px;height:18px}
+.ivory .sec-head .label{color:var(--text-dark)}
+.ivory .sec-head .num,.ivory .sec-head .spark{color:var(--gold)}
+h2{font-family:var(--cinzel);font-weight:600;font-size:clamp(34px,5.2vw,66px);line-height:1.06;letter-spacing:.04em;margin-top:26px}
+h2 em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:0;color:var(--gold-2)}
+.ivory h2 em{color:var(--bronze)}
+.lede{max-width:620px;font-size:clamp(19px,1.8vw,23px);color:var(--muted);margin-top:22px}
+.ivory .lede{color:var(--muted-dark)}
+canvas.sparkles{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+
+/* Adinkra divider */
+.adinkra{display:block;width:min(560px,86vw);margin:0 auto;mix-blend-mode:screen;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.adinkra-wrap{background:var(--black);padding:26px 20px}
+
+/* STORY */
+.story-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,7vw,100px);align-items:center;margin-top:20px}
+@media(max-width:900px){.story-grid{grid-template-columns:1fr}}
+.word{font-family:var(--cinzel);font-weight:900;font-size:clamp(56px,10vw,138px);line-height:.92;letter-spacing:.02em;color:transparent;-webkit-text-stroke:1px rgba(242,212,145,.55);margin-top:30px}
+.word b{color:var(--gold-3);-webkit-text-stroke:0;font-weight:900}
+.word-meta{font-style:italic;font-size:26px;color:var(--muted);margin-top:14px}
+blockquote{font-family:var(--serif);font-size:clamp(28px,3.2vw,42px);font-weight:500;font-style:italic;line-height:1.22;border:1px solid var(--line);padding:42px 40px;position:relative;background:rgba(0,0,0,.25)}
+blockquote::before,blockquote::after{content:"";position:absolute;width:26px;height:26px;background:var(--gold-3);clip-path:polygon(50% 0,58% 42%,100% 50%,58% 58%,50% 100%,42% 58%,0 50%,42% 42%)}
+blockquote::before{top:-13px;left:-13px}blockquote::after{bottom:-13px;right:-13px}
+blockquote em{color:var(--gold-3)}
+cite{display:block;margin-top:22px;font-family:var(--cinzel);font-style:normal;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-2)}
+
+/* MUSE */
+.muse{background:radial-gradient(ellipse 60% 70% at 50% 62%,#efefef 0%,#e2e2e2 45%,#d9d9d9 75%);color:var(--text-dark);overflow:hidden;padding-bottom:0}
+.muse .sec-head{justify-content:center}
+.muse .sec-head .label{color:var(--text-dark)}
+.muse .sec-head .spark,.muse .sec-head .num{color:var(--gold)}
+.muse-title{text-align:center}
+.unlock{display:inline-flex;align-items:center;gap:12px;margin-top:28px;font-family:var(--sans);font-weight:800;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);border:1.5px solid var(--gold);padding:10px 18px}
+.unlock i{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(200,146,47,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 12px rgba(200,146,47,0)}100%{box-shadow:0 0 0 0 rgba(200,146,47,0)}}
+.muse-name{font-family:var(--cinzel);font-weight:700;font-size:clamp(28px,4.4vw,56px);line-height:1.1;letter-spacing:.03em;margin-top:22px}
+.muse-alias{font-style:italic;font-size:clamp(22px,2.6vw,32px);color:var(--bronze);margin-top:4px}
+.muse-img{position:relative;max-width:1000px;margin:40px auto 0;-webkit-mask-image:radial-gradient(ellipse 50% 85% at 50% 36%,#000 58%,transparent 100%),linear-gradient(180deg,#000 80%,transparent);-webkit-mask-composite:source-in;mask-image:radial-gradient(ellipse 50% 85% at 50% 36%,#000 58%,transparent 100%),linear-gradient(180deg,#000 80%,transparent);mask-composite:intersect}
+.muse-img img{width:100%}
+.muse-band{background:linear-gradient(180deg,#d9d9d9,#ece4d4);padding:10px 20px 100px;color:var(--text-dark);text-align:center}
+.muse-band .lede{margin:0 auto;max-width:720px;color:var(--muted-dark)}
+.traits{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:34px}
+.traits span{font-family:var(--cinzel);font-weight:600;font-size:12px;letter-spacing:.24em;text-transform:uppercase;border:1px solid rgba(138,90,28,.5);padding:10px 16px;color:var(--bronze);background:rgba(255,255,255,.35)}
+.muse-band .values{margin-top:44px;color:var(--text-dark)}
+
+/* LINE-UP */
+.lineup{background:linear-gradient(180deg,#ece4d4 0%,#e6d8bd 18%,#0b0a08 18.01%,#0b0a08 100%);padding-top:0}
+.lineup-head{background:linear-gradient(180deg,#ece4d4,#e4d4b6);color:var(--text-dark);text-align:center;padding:30px 20px 120px;margin:0 calc(-1*clamp(20px,5vw,64px))}
+.lineup-head .sec-head{justify-content:center}
+.lineup-head .sec-head .label{color:var(--text-dark)}
+.lineup-head .sec-head .spark,.lineup-head .sec-head .num{color:var(--gold)}
+.lineup-head h2 em{color:var(--bronze)}
+.lineup-head .lede{margin-inline:auto;color:var(--muted-dark)}
+.chapters{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:-80px;perspective:1600px}
+@media(max-width:1000px){.chapters{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.chapters{grid-template-columns:1fr;max-width:400px;margin-inline:auto}}
+.card{position:relative;aspect-ratio:4/5;cursor:pointer;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.chapters .card.flipped{transform:rotateY(180deg)}
+.chapters .card.rv{transition:opacity 1s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;box-shadow:0 30px 60px -28px rgba(0,0,0,.85)}
+.front{background:linear-gradient(180deg,#efe5cf 0%,#e6d7ba 50%,#bfae8c 62%,#0b0a08 78%);color:var(--text-dark)}
+.front::before{content:"";position:absolute;inset:10px;border:1px solid rgba(200,146,47,.55);z-index:4;pointer-events:none}
+.front .p-top{position:absolute;top:22px;left:0;right:0;text-align:center;z-index:3}
+.front .p-top b{display:block;font-family:var(--cinzel);font-weight:900;font-size:20px;letter-spacing:.12em;line-height:1}
+.front .p-top i{display:block;font-family:var(--sans);font-weight:800;font-style:italic;font-size:10px;letter-spacing:.28em;margin-top:4px}
+.front svg.art{position:absolute;left:0;right:0;top:11%;width:100%;height:60%;z-index:1;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.card:hover .front svg.art{transform:scale(1.04)}
+.front::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,transparent 58%,rgba(11,10,8,.7) 68%,#0b0a08 76%)}
+.front .qm{font-family:var(--cinzel);font-weight:900;font-size:78px;fill:var(--gold-3);animation:qpulse 3.2s ease-in-out infinite;filter:drop-shadow(0 0 12px rgba(242,212,145,.7))}
+@keyframes qpulse{0%,100%{opacity:.7}50%{opacity:1}}
+.front .p-bot{position:absolute;left:0;right:0;bottom:0;padding:0 18px 22px;text-align:center;z-index:3}
+.front .p-bot .slot-t{font-family:var(--cinzel);font-size:10px;letter-spacing:.3em;color:var(--gold-2);text-transform:uppercase}
+.front .p-bot h3{font-family:var(--sans);font-weight:800;color:#fff;font-size:clamp(20px,2.1vw,27px);letter-spacing:.02em;text-transform:uppercase;line-height:1.05;margin-top:6px}
+.front .p-bot img{width:86%;margin:10px auto 8px;mix-blend-mode:screen}
+.front .p-bot .mood{font-family:var(--sans);font-weight:700;font-style:italic;font-size:10px;letter-spacing:.14em;color:var(--gold-2);text-transform:uppercase}
+.front .tap{position:absolute;top:22px;right:22px;z-index:5;width:26px;height:26px;border-radius:50%;border:1px solid rgba(138,90,28,.6);display:grid;place-items:center;font-family:var(--sans);font-size:12px;font-weight:800;color:var(--bronze)}
+.back{transform:rotateY(180deg);padding:34px 28px;display:flex;flex-direction:column;color:var(--cream)}
+.back::before{content:"";position:absolute;inset:10px;border:1px solid var(--line);pointer-events:none}
+.back .slot-t{font-family:var(--cinzel);font-size:11px;letter-spacing:.3em;color:var(--gold-2);text-transform:uppercase}
+.back h3{font-family:var(--cinzel);font-weight:700;font-size:clamp(22px,2.2vw,28px);letter-spacing:.06em;margin-top:10px;line-height:1.1}
+.back p{font-size:18px;color:var(--muted);margin-top:14px;line-height:1.45}
+.back .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.back .tags span{font-family:var(--sans);font-weight:700;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:6px 10px;border:1px solid var(--line);color:var(--gold-3)}
+.back .swatch{display:flex;gap:6px;margin-top:auto}
+.back .swatch i{width:18px;height:18px;border-radius:50%;box-shadow:inset -3px -3px 6px rgba(0,0,0,.35),inset 2px 2px 4px rgba(255,255,255,.35)}
+.back .locked{margin-top:14px;display:flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:800;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-2)}
+.back .locked::before{content:"";width:12px;height:12px;background:var(--gold-2);clip-path:polygon(50% 0,58% 42%,100% 50%,58% 58%,50% 100%,42% 58%,0 50%,42% 42%)}
+.flip-hint{text-align:center;font-family:var(--cinzel);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-top:30px}
+.lineup-note{margin-top:60px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;border:1px solid var(--line);padding:26px 30px;position:relative}
+.lineup-note strong{font-family:var(--cinzel);font-weight:700;font-size:clamp(18px,2vw,24px);letter-spacing:.14em;color:var(--gold-3)}
+.lineup-note p{color:var(--muted);font-size:17px;margin-top:4px}
+
+/* WORLDS */
+.world-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:60px}
+.world{grid-column:span 2;border:1px solid var(--line);padding:30px 28px;background:rgba(0,0,0,.28);min-height:280px;display:flex;flex-direction:column;position:relative;transition:background .4s,border-color .4s,transform .5s cubic-bezier(.2,.8,.2,1)}
+.world:nth-child(4),.world:nth-child(5){grid-column:span 3}
+.world:hover{background:rgba(200,146,47,.08);border-color:var(--gold-2);transform:translateY(-4px)}
+.world .top{display:flex;justify-content:space-between;align-items:center}
+.world .n{font-family:var(--cinzel);font-size:30px;font-weight:700;color:var(--gold-3)}
+.world .sense{font-family:var(--cinzel);font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-2);border:1px solid var(--line);padding:6px 10px}
+.world h3{font-family:var(--cinzel);font-weight:600;font-size:clamp(20px,2vw,25px);letter-spacing:.06em;margin-top:auto;padding-top:40px;line-height:1.2}
+.world p{color:var(--muted);font-size:17.5px;margin-top:10px}
+@media(max-width:900px){.world-grid{grid-template-columns:1fr}.world,.world:nth-child(4),.world:nth-child(5){grid-column:auto;min-height:220px}}
+
+/* DAY */
+.timeline{position:relative;margin-top:70px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.timeline::before{content:"";position:absolute;top:10px;left:0;right:0;height:1px;background:var(--line)}
+.slot{position:relative;padding-top:44px}
+.slot::before{content:"";position:absolute;top:0;left:-2px;width:22px;height:22px;background:var(--gold-3);clip-path:polygon(50% 0,58% 42%,100% 50%,58% 58%,50% 100%,42% 58%,0 50%,42% 42%)}
+.slot .t{font-family:var(--cinzel);font-weight:700;font-size:clamp(24px,2.4vw,32px);color:var(--gold-3);line-height:1}
+.slot h4{font-family:var(--cinzel);font-weight:600;font-size:15px;letter-spacing:.2em;text-transform:uppercase;margin:14px 0 8px}
+.slot p{color:var(--muted);font-size:17.5px}
+@media(max-width:900px){.timeline{grid-template-columns:1fr 1fr;row-gap:44px}.timeline::before{display:none}}
+@media(max-width:520px){.timeline{grid-template-columns:1fr}}
+
+/* PASSPORT */
+.pass-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,90px);align-items:center}
+@media(max-width:900px){.pass-grid{grid-template-columns:1fr}}
+.pass-card{position:relative;aspect-ratio:3/4.1;max-width:390px;margin:0 auto;background:linear-gradient(170deg,#0f3d15,#061207 75%);border:1px solid var(--gold-2);outline:1px solid rgba(226,180,90,.35);outline-offset:-12px;padding:40px 34px;color:var(--cream);box-shadow:0 40px 80px -30px rgba(30,20,5,.7);transform:rotate(-4deg);transition:transform .7s cubic-bezier(.2,.8,.2,1);cursor:pointer}
+.pass-card:hover{transform:rotate(0) scale(1.02)}
+.pc-top{font-family:var(--cinzel);font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:var(--gold-2)}
+.pc-title{font-family:var(--cinzel);font-weight:900;font-size:50px;letter-spacing:.08em;color:var(--gold-3);margin-top:16px;line-height:1}
+.pc-sub{font-style:italic;color:var(--muted);margin-top:4px;font-size:18px}
+.stamps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}
+.stamp{aspect-ratio:1;border-radius:50%;border:1.5px dashed rgba(226,180,90,.5);display:grid;place-items:center;text-align:center;font-family:var(--cinzel);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,212,145,.7);padding:6px;transition:all .4s}
+.stamp.on{border-style:solid;border-color:var(--gold-3);color:var(--black);background:var(--gold-3);transform:rotate(-12deg)}
+.pc-foot{position:absolute;bottom:30px;left:34px;right:34px;display:flex;justify-content:space-between;font-family:var(--cinzel);font-size:9.5px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
+.feat-list{list-style:none;margin-top:30px;display:grid;gap:14px}
+.feat-list li{display:flex;gap:14px;align-items:center;font-size:21px}
+.feat-list li::before{content:"";flex:0 0 14px;height:14px;background:var(--gold);clip-path:polygon(50% 0,58% 42%,100% 50%,58% 58%,50% 100%,42% 58%,0 50%,42% 42%)}
+
+/* FUTURE */
+.editions{margin-top:64px;display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:20px;scrollbar-width:thin;scrollbar-color:var(--gold) transparent}
+.ed{flex:0 0 min(290px,78vw);scroll-snap-align:start;min-height:340px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);padding:30px;position:relative;background:rgba(0,0,0,.3)}
+.ed.first{background:linear-gradient(170deg,#e9dcc2,#d4bf98);color:var(--text-dark);border-color:var(--gold)}
+.ed .y{font-family:var(--cinzel);font-weight:900;font-size:62px;line-height:1;color:var(--gold-3)}
+.ed.first .y{color:var(--text-dark)}
+.ed:not(.first) .y{color:transparent;-webkit-text-stroke:1px rgba(242,212,145,.55)}
+.ed .lbl{font-family:var(--cinzel);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-2)}
+.ed.first .lbl{color:var(--bronze)}
+.ed h4{font-family:var(--cinzel);font-weight:600;font-size:21px;letter-spacing:.04em;line-height:1.25;margin-top:8px}
+.ed .lock{position:absolute;top:26px;right:26px;width:16px;height:16px;background:var(--gold-2);clip-path:polygon(50% 0,58% 42%,100% 50%,58% 58%,50% 100%,42% 58%,0 50%,42% 42%)}
+.ed.first .lock{background:var(--gold)}
+
+/* JOIN */
+.join{text-align:center;overflow:hidden;padding-block:clamp(110px,13vw,170px)}
+.join .horn{bottom:auto;top:50%;transform:translateY(-50%);width:min(34vw,480px);opacity:.95}
+.join .wrap{max-width:720px}
+.join h2{font-size:clamp(42px,7vw,92px)}
+.join .lede{margin-inline:auto}
+.join .values{margin-top:40px;color:var(--text-dark)}
+.signup{display:flex;max-width:560px;margin:34px auto 0;border:1.5px solid var(--text-dark);background:rgba(255,255,255,.45)}
+.signup input{flex:1;min-width:0;border:0;background:transparent;padding:0 20px;font-family:var(--serif);font-size:20px;color:var(--text-dark);outline:none}
+.signup input::placeholder{color:rgba(28,20,11,.5)}
+.signup .btn{border:0;cursor:pointer;white-space:nowrap}
+.signup.err{border-color:#a3341c}
+.signup-msg{min-height:26px;margin-top:12px;font-size:18px;font-style:italic;color:var(--bronze)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media(max-width:520px){.signup{flex-direction:column}.signup input{padding:16px}.signup .btn{justify-content:center}}
+.partner-row{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:22px;font-family:var(--cinzel);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-dark)}
+.partner-tiles{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:36px}
+.partner-tiles span{font-family:var(--cinzel);font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:10px 14px;border:1px solid rgba(138,90,28,.45);color:var(--bronze);background:rgba(255,255,255,.3)}
+@media(max-width:820px){.join .horn{opacity:.35;width:60vw}.join .horn.l{left:-30vw}.join .horn.r{right:-30vw}}
+
+footer{background:var(--black);padding:56px clamp(20px,5vw,64px) 36px;border-top:1px solid var(--line)}
+.foot{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-end}
+.foot .brand{font-size:40px;color:var(--gold-3)}
+.foot p{color:var(--muted);font-size:17px;max-width:440px;margin-top:8px}
+.foot-links{display:flex;gap:24px;font-family:var(--cinzel);font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+.foot-links a{text-decoration:none;color:var(--muted)}
+.foot-links a:hover{color:var(--gold-2)}
+.fine{max-width:1200px;margin:36px auto 0;font-family:var(--sans);font-size:11px;color:rgba(244,234,214,.4)}
+
+
+/* DETAILS */
+.details{background:var(--black);padding:0 clamp(20px,5vw,64px);border-bottom:1px solid var(--line)}
+.details-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.dt{padding:38px 28px;border-right:1px solid var(--line);position:relative}
+.dt:first-child{padding-left:0}.dt:last-child{border-right:0}
+.dt .k{font-family:var(--cinzel);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-2);display:flex;align-items:center;gap:10px}
+.dt .k::before{content:"";width:11px;height:11px;background:var(--gold-2);clip-path:polygon(50% 0,58% 42%,100% 50%,58% 58%,50% 100%,42% 58%,0 50%,42% 42%)}
+.dt .v{font-family:var(--cinzel);font-weight:700;font-size:clamp(20px,2vw,26px);letter-spacing:.04em;margin-top:12px;line-height:1.15;color:var(--cream)}
+.dt .s{font-size:17px;color:var(--muted);margin-top:6px}
+@media(max-width:900px){.details-grid{grid-template-columns:1fr 1fr}.dt{padding:28px 18px 28px 0!important;border-right:0;border-bottom:1px solid var(--line)}}
+@media(max-width:480px){.details-grid{grid-template-columns:1fr}}
+
+/* WHY */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:60px;border-top:1px solid rgba(138,90,28,.35);border-left:1px solid rgba(138,90,28,.35)}
+.why{padding:36px 30px 40px;border-right:1px solid rgba(138,90,28,.35);border-bottom:1px solid rgba(138,90,28,.35);transition:background .4s}
+.why:hover{background:rgba(255,255,255,.35)}
+.why .n{font-family:var(--cinzel);font-weight:900;font-size:40px;color:transparent;-webkit-text-stroke:1px var(--gold);line-height:1}
+.why h3{font-family:var(--cinzel);font-weight:700;font-size:19px;letter-spacing:.08em;text-transform:uppercase;margin-top:18px;line-height:1.25}
+.why p{color:var(--muted-dark);font-size:18.5px;margin-top:10px}
+@media(max-width:900px){.why-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.why-grid{grid-template-columns:1fr}}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.2,.8,.2,1),transform 1s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#top" class="brand">ULANI</a>
+  <ul>
+    <li><a href="#details">When &amp; Where</a></li>
+    <li><a href="#story">The Story</a></li>
+    <li><a href="#muse">The Muse</a></li>
+    <li><a href="#lineup">Line-Up</a></li>
+    <li><a href="#worlds">Five Worlds</a></li>
+    
+  </ul>
+  <a href="#join" class="pill">Join the Universe</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero grain" id="top">
+  <div class="frame"></div>
+  <img class="horn l" id="hornL" src="img/horn-left.jpg" alt="">
+  <img class="horn r" id="hornR" src="img/horn-right.jpg" alt="">
+  <div class="hero-inner">
+    <div class="emblem rv"><img src="img/emblem.png" alt="ULANI emblem — the horned wordmark inside a ring of Adinkra symbols"></div>
+    <div class="presents rv d1">ULANI PRESENTS</div>
+    <h1 class="rv d1">The African Cultural Experience<em>a taste of freedom</em></h1>
+    <p class="tagline rv d2">Born from one language. Echoed in another.<br>Held together by joy.</p>
+    <div class="countdown rv d3" aria-label="Countdown to ULANI 2027">
+      <div class="cd"><b id="cd-d">--</b><span>Days</span></div>
+      <div class="cd"><b id="cd-h">--</b><span>Hours</span></div>
+      <div class="cd"><b id="cd-m">--</b><span>Mins</span></div>
+      <div class="cd"><b id="cd-s">--</b><span>Secs</span></div>
+    </div>
+    <div class="cd-note rv d3">20 March 2027 · Human Rights Day Weekend · Gauteng</div>
+    <div class="cta-row rv d4">
+      <a href="#join" class="btn btn-dark">Join the universe →</a>
+      <a href="#muse" class="btn btn-line">Meet the muse</a>
+    </div>
+    <div class="values rv d4"><span>Joy</span><span>Culture</span><span>Freedom</span><span>Heritage</span><span>Future</span></div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>JOY</span><span>CULTURE</span><span>FREEDOM</span><span>HERITAGE</span><span>FUTURE</span><span>JABULANI</span><span>2027 UNLOCKS WINNIE</span>
+    <span>JOY</span><span>CULTURE</span><span>FREEDOM</span><span>HERITAGE</span><span>FUTURE</span><span>JABULANI</span><span>2027 UNLOCKS WINNIE</span>
+  </div>
+</div>
+
+
+<!-- DETAILS -->
+<div class="details" id="details">
+  <div class="details-grid">
+    <div class="dt rv"><div class="k">When</div><div class="v">Saturday<br>20 March 2027</div><div class="s">Human Rights Day weekend</div></div>
+    <div class="dt rv d1"><div class="k">Time</div><div class="v">11:30 – 21:00</div><div class="s">Gates open at 11:30. One full day.</div></div>
+    <div class="dt rv d2"><div class="k">Where</div><div class="v">Gauteng,<br>South Africa</div><div class="s">Venue reveal coming soon</div></div>
+    <div class="dt rv d3"><div class="k">Who</div><div class="v">5,000 guests</div><div class="s">One edition a year. Be one of them.</div></div>
+  </div>
+</div>
+
+<!-- STORY -->
+<section class="green" id="story">
+  <canvas class="sparkles"></canvas>
+  <div class="wrap">
+    <div class="sec-head rv"><span class="spark"></span><span class="num">01</span><span class="label">The Story</span></div>
+    <div class="story-grid">
+      <div>
+        <div class="word rv d1">JAB<b>ULANI</b></div>
+        <div class="word-meta rv d2">isiZulu — to rejoice.</div>
+        <p class="lede rv d2">ULANI is born from that word: an annual African cultural festival bringing music, food, fashion, beauty, art and ideas into one day. It honours those who came before us through history, creativity and joy, and imagines, boldly, what comes next.</p>
+      </div>
+      <blockquote class="rv d2">"If you give people <em>a taste of freedom,</em> they will spend their lives chasing it."
+        <cite>The founding belief of ULANI</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+
+<!-- WHY -->
+<section class="ivory grain" id="why">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="spark"></span><span class="label">Why You Should Be There</span></div>
+    <h2 class="rv d1">Not just a festival.<br><em>A day you'll carry.</em></h2>
+    <div class="why-grid">
+      <div class="why rv"><div class="n">01</div><h3>Honour a legend, together</h3><p>On Human Rights Day weekend, thousands gather to celebrate Mam' Winnie's courage and style, ending in a collective tribute at nightfall.</p></div>
+      <div class="why rv d1"><div class="n">02</div><h3>Every generation on one stage</h3><p>Legends, soul singers, the new girls on the block and the kids defining today's sound, in one continuous journey.</p></div>
+      <div class="why rv d2"><div class="n">03</div><h3>Five worlds, every sense</h3><p>Art, music, food, fashion and ideas. Wander, taste, try something on, make something with your hands.</p></div>
+      <div class="why rv"><div class="n">04</div><h3>Play, don't just watch</h3><p>Collect stamps in your ULANI Passport, join a House, follow discovery trails and leave with keepsakes.</p></div>
+      <div class="why rv d1"><div class="n">05</div><h3>Back African creatives</h3><p>Every ticket means paid work for local artists, makers, chefs and vendors.</p></div>
+      <div class="why rv d2"><div class="n">06</div><h3>Be there for chapter one</h3><p>ULANI honours a new icon every year. There is only one first edition, and only 5,000 people get to say they were there.</p></div>
+    </div>
+    <div class="cta-row rv" style="justify-content:flex-start;margin-top:44px">
+      <a href="#join" class="btn btn-dark">Join the universe →</a>
+    </div>
+  </div>
+</section>
+
+<div class="adinkra-wrap"><img class="adinkra" src="img/adinkra.png" alt=""></div>
+
+<!-- MUSE -->
+<section class="muse grain" id="muse">
+  <div class="wrap muse-title">
+    <div class="sec-head rv"><span class="spark"></span><span class="num">02</span><span class="label">The Muse</span><span class="spark"></span></div>
+    <div class="unlock rv d1"><i></i>2027 unlocks</div>
+    <div class="muse-name rv d1">Nomzamo Winifred Zanyiwe<br>Madikizela-Mandela</div>
+    <div class="muse-alias rv d2">(Mam' Winnie)</div>
+  </div>
+  <div class="muse-img rv d2"><img src="img/muse-winnie.jpg" alt="ULANI muse artwork: a woman in a striped headwrap framed by golden horns and beaded flowers"></div>
+</section>
+<div class="muse-band">
+  <p class="lede rv">Courage, resistance, community, personal style, and the strength and complexity of womanhood. Her story runs through the whole day, from the art at the gates to a collective tribute at nightfall.</p>
+  <div class="traits rv d1"><span>Courage</span><span>Resistance</span><span>Community</span><span>Style</span><span>Womanhood</span></div>
+</div>
+
+<!-- LINE-UP -->
+<section class="lineup" id="lineup">
+  <div class="lineup-head grain">
+    <div class="sec-head rv"><span class="spark"></span><span class="num">03</span><span class="label">ULANI Presents</span><span class="spark"></span></div>
+    <h2 class="rv d1">A conversation<br>between <em>generations.</em></h2>
+    <p class="lede rv d2">Six chapters, from the foundational voices who carried a nation's sound to the young artists rewriting it right now. The artists behind each "?" unlock one by one.</p>
+  </div>
+  <div class="wrap">
+    <div class="chapters">
+      <div class="card rv" data-pal="#9cc0e6,#3d5fa8,#1d2f63,#e9e3d6,#b39a6e" tabindex="0" role="button" aria-label="The Beautiful Ones: tap to read about this set">
+        <div class="face front">
+          <div class="p-top"><b>ULANI</b><i>PRESENTS</i></div>
+          <span class="tap">↻</span>
+          <svg class="art" viewBox="0 0 400 330" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+          <div class="p-bot"><div class="slot-t">Ch. 01 · Early Afternoon</div><h3>The Beautiful Ones</h3><img src="img/adinkra.png" alt=""><div class="mood">Fresh voices · new girls on the block</div></div>
+        </div>
+        <div class="face back green">
+          <div class="slot-t">Ch. 01 · Early Afternoon</div>
+          <h3>The Beautiful Ones</h3>
+          <p>An ode to the new girls on the block. Emerging women bringing fresh expression and perspective to the sound of now.</p>
+          <div class="tags"><span>Alt-R&B</span><span>Afro-pop</span><span>Neo-soul</span></div>
+          <div class="swatch"><i style="background:#9cc0e6"></i><i style="background:#3d5fa8"></i><i style="background:#1d2f63"></i><i style="background:#e9e3d6"></i><i style="background:#b39a6e"></i></div>
+          <div class="locked">Artists unlocking soon</div>
+        </div>
+      </div>
+      <div class="card rv d2" data-pal="#e9d9bd,#b8875a,#6b4423,#2a1a10,#d8c7a6" tabindex="0" role="button" aria-label="The Soul Garden: tap to read about this set">
+        <div class="face front">
+          <div class="p-top"><b>ULANI</b><i>PRESENTS</i></div>
+          <span class="tap">↻</span>
+          <svg class="art" viewBox="0 0 400 330" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+          <div class="p-bot"><div class="slot-t">Ch. 02 · Mid Afternoon</div><h3>The Soul Garden</h3><img src="img/adinkra.png" alt=""><div class="mood">Feeling · reflection · connection</div></div>
+        </div>
+        <div class="face back green">
+          <div class="slot-t">Ch. 02 · Mid Afternoon</div>
+          <h3>The Soul Garden</h3>
+          <p>Live soul for slowing down. Warm voices, real instruments and songs that sit in your chest long after the set ends.</p>
+          <div class="tags"><span>Soul</span><span>Afro-soul</span><span>Live band</span></div>
+          <div class="swatch"><i style="background:#e9d9bd"></i><i style="background:#b8875a"></i><i style="background:#6b4423"></i><i style="background:#2a1a10"></i><i style="background:#d8c7a6"></i></div>
+          <div class="locked">Artists unlocking soon</div>
+        </div>
+      </div>
+      <div class="card rv d3" data-pal="#c9ccd1,#7d838c,#2b2e33,#e2b45a,#0d0e10" tabindex="0" role="button" aria-label="The Vanguard: tap to read about this set">
+        <div class="face front">
+          <div class="p-top"><b>ULANI</b><i>PRESENTS</i></div>
+          <span class="tap">↻</span>
+          <svg class="art" viewBox="0 0 400 330" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+          <div class="p-bot"><div class="slot-t">Ch. 03 · Late Afternoon</div><h3>The Vanguard</h3><img src="img/adinkra.png" alt=""><div class="mood">The zeitgeist of today's youth</div></div>
+        </div>
+        <div class="face back green">
+          <div class="slot-t">Ch. 03 · Late Afternoon</div>
+          <h3>The Vanguard</h3>
+          <p>The new kids on the block. The language, energy and sound of a generation defining its own cultural moment.</p>
+          <div class="tags"><span>Amapiano</span><span>Hip-hop</span><span>Street</span></div>
+          <div class="swatch"><i style="background:#c9ccd1"></i><i style="background:#7d838c"></i><i style="background:#2b2e33"></i><i style="background:#e2b45a"></i><i style="background:#0d0e10"></i></div>
+          <div class="locked">Artists unlocking soon</div>
+        </div>
+      </div>
+      <div class="card rv" data-pal="#c56b34,#1f6b66,#0f3d3a,#e8b27a,#2a1408" tabindex="0" role="button" aria-label="The Time Machine: tap to read about this set">
+        <div class="face front">
+          <div class="p-top"><b>ULANI</b><i>PRESENTS</i></div>
+          <span class="tap">↻</span>
+          <svg class="art" viewBox="0 0 400 330" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+          <div class="p-bot"><div class="slot-t">Ch. 04 · Into the Evening</div><h3>The Time Machine</h3><img src="img/adinkra.png" alt=""><div class="mood">Generational DJ sets · every era</div></div>
+        </div>
+        <div class="face back green">
+          <div class="slot-t">Ch. 04 · Into the Evening</div>
+          <h3>The Time Machine</h3>
+          <p>DJs as the connectors. A journey through the decades that blends the outgoing sound with the next and keeps the floor moving.</p>
+          <div class="tags"><span>House</span><span>Kwaito</span><span>Amapiano</span></div>
+          <div class="swatch"><i style="background:#c56b34"></i><i style="background:#1f6b66"></i><i style="background:#0f3d3a"></i><i style="background:#e8b27a"></i><i style="background:#2a1408"></i></div>
+          <div class="locked">Artists unlocking soon</div>
+        </div>
+      </div>
+      <div class="card rv d2" data-pal="#f0a640,#c4561e,#7a2410,#f6d79a,#2b0d06" tabindex="0" role="button" aria-label="Heritage at Sunset: tap to read about this set">
+        <div class="face front">
+          <div class="p-top"><b>ULANI</b><i>PRESENTS</i></div>
+          <span class="tap">↻</span>
+          <svg class="art" viewBox="0 0 400 330" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+          <div class="p-bot"><div class="slot-t">Ch. 05 · Sunset</div><h3>Heritage at Sunset</h3><img src="img/adinkra.png" alt=""><div class="mood">Memory · home · the legends</div></div>
+        </div>
+        <div class="face back green">
+          <div class="slot-t">Ch. 05 · Sunset</div>
+          <h3>Heritage at Sunset</h3>
+          <p>Foundational voices and the songs that raised a nation, timed to land as the sun goes down over the festival.</p>
+          <div class="tags"><span>Mbaqanga</span><span>Kwaito</span><span>Afro-pop</span></div>
+          <div class="swatch"><i style="background:#f0a640"></i><i style="background:#c4561e"></i><i style="background:#7a2410"></i><i style="background:#f6d79a"></i><i style="background:#2b0d06"></i></div>
+          <div class="locked">Artists unlocking soon</div>
+        </div>
+      </div>
+      <div class="card rv d3" data-pal="#b6a8d6,#6c5c9e,#2b2245,#e2b45a,#0d0a14" tabindex="0" role="button" aria-label="The Last Voice: tap to read about this set">
+        <div class="face front">
+          <div class="p-top"><b>ULANI</b><i>PRESENTS</i></div>
+          <span class="tap">↻</span>
+          <svg class="art" viewBox="0 0 400 330" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+          <div class="p-bot"><div class="slot-t">Ch. 06 · Nightfall</div><h3>The Last Voice</h3><img src="img/adinkra.png" alt=""><div class="mood">The final voice before the tribute</div></div>
+        </div>
+        <div class="face back green">
+          <div class="slot-t">Ch. 06 · Nightfall</div>
+          <h3>The Last Voice</h3>
+          <p>The last voice of the night. A set rooted in liberation music that carries everyone straight into the muse's tribute.</p>
+          <div class="tags"><span>Liberation music</span><span>Afro-soul</span><span>Jazz</span></div>
+          <div class="swatch"><i style="background:#b6a8d6"></i><i style="background:#6c5c9e"></i><i style="background:#2b2245"></i><i style="background:#e2b45a"></i><i style="background:#0d0a14"></i></div>
+          <div class="locked">Artists unlocking soon</div>
+        </div>
+      </div>
+    </div>
+    <p class="flip-hint rv">Tap a card to read about the set</p>
+
+    <div class="lineup-note rv">
+      <div><strong>THE LINE-UP UNLOCKS SOON</strong><p>Legends, rising stars and the DJs connecting every chapter. Each reveal drops on Instagram first.</p></div>
+      <a href="https://www.instagram.com/ulani_festival/" class="btn btn-gold" target="_blank" rel="noopener">Follow for reveals →</a>
+    </div>
+  </div>
+</section>
+
+<!-- WORLDS -->
+<section class="green" id="worlds">
+  <canvas class="sparkles"></canvas>
+  <div class="wrap">
+    <div class="sec-head rv"><span class="spark"></span><span class="num">04</span><span class="label">A Sensory World</span></div>
+    <h2 class="rv d1">Five worlds.<br><em>Every sense, awakened.</em></h2>
+    <div class="world-grid">
+      <article class="world rv"><div class="top"><span class="n">01</span><span class="sense">See</span></div><h3>The Legacy Gallery</h3><p>Historical storytelling, portraiture, contemporary art and installations shaped around the muse.</p></article>
+      <article class="world rv d1"><div class="top"><span class="n">02</span><span class="sense">Hear</span></div><h3>The Sound Garden</h3><p>Heritage, soul and contemporary African music, poetry and one shared tribute.</p></article>
+      <article class="world rv d2"><div class="top"><span class="n">03</span><span class="sense">Taste · Smell</span></div><h3>The Freedom Table</h3><p>Regional cuisines, culinary entrepreneurs and food tied to memory and celebration.</p></article>
+      <article class="world rv"><div class="top"><span class="n">04</span><span class="sense">Touch · See</span></div><h3>The Style &amp; Maker Quarter</h3><p>Fashion, hair, beauty, textiles, craft and markets, with hands-on workshops where you make something of your own.</p></article>
+      <article class="world rv d1"><div class="top"><span class="n">05</span><span class="sense">Hear · Connect</span></div><h3>The Ideas House</h3><p>Intimate talks, youth dialogue, books and creative encounters asking what freedom means today.</p></article>
+    </div>
+
+    <div class="sec-head rv" style="margin-top:130px"><span class="spark"></span><span class="num">05</span><span class="label">The Day Journey</span></div>
+    <h2 class="rv d1">Golden afternoon.<br><em>Sunset soul.</em></h2>
+    <div class="timeline">
+      <div class="slot rv"><div class="t">11:30</div><h4>Arrive &amp; Discover</h4><p>Art-led arrival, exhibitions, food, markets and DJ-led wandering.</p></div>
+      <div class="slot rv d1"><div class="t">13:00</div><h4>The Day Opens</h4><p>Live music, emerging voices, fashion and conversations in every corner.</p></div>
+      <div class="slot rv d2"><div class="t">17:30</div><h4>Golden Hour</h4><p>Heritage performances, the muse's story and a collective tribute.</p></div>
+      <div class="slot rv d3"><div class="t">19:00</div><h4>Into the Night</h4><p>The headline journey and a closing celebration to remember.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PASSPORT -->
+<section class="ivory grain" id="passport">
+  <div class="wrap pass-grid">
+    <div>
+      <div class="sec-head rv"><span class="spark"></span><span class="num">06</span><span class="label">Play the Festival</span></div>
+      <h2 class="rv d1">Don't just attend.<br><em>Explore.</em></h2>
+      <p class="lede rv d2">Pick up a ULANI Passport at the gates, join a themed House and collect your stamps across the five worlds.</p>
+      <ul class="feat-list rv d3">
+        <li>Quizzes, poetry and collaborative art</li>
+        <li>Discovery trails through every world</li>
+        <li>Keepsakes for the curious</li>
+        <li>Photo worlds built to be remembered</li>
+      </ul>
+    </div>
+    <div class="rv d2">
+      <div class="pass-card" id="passcard">
+        <div class="pc-top">Passport · Edition 001</div>
+        <div class="pc-title">ULANI</div>
+        <div class="pc-sub">Bearer of a taste of freedom</div>
+        <div class="stamps">
+          <div class="stamp">Legacy Gallery</div><div class="stamp">Sound Garden</div><div class="stamp">Freedom Table</div>
+          <div class="stamp">Maker Quarter</div><div class="stamp">Ideas House</div><div class="stamp">The Tribute</div>
+        </div>
+        <div class="pc-foot"><span>No. 0001</span><span>Tap to stamp</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUTURE -->
+<section class="green" id="future">
+  <canvas class="sparkles"></canvas>
+  <div class="wrap">
+    <div class="sec-head rv"><span class="spark"></span><span class="num">07</span><span class="label">What Is To Come</span></div>
+    <h2 class="rv d1">This is only<br><em>the first chapter.</em></h2>
+    <p class="lede rv d2">ULANI is an annual legacy series. Each Afro-futuristic edition honours a different African icon or movement, with a new muse, a new visual world and a new story to rejoice in.</p>
+    <div class="editions rv d2">
+      <div class="ed first"><span class="lock"></span><div><div class="lbl">Edition</div><div class="y">001</div></div><div><div class="lbl">2027 · Unlocked</div><h4>Mam' Winnie<br>Madikizela-Mandela</h4></div></div>
+      <div class="ed"><span class="lock"></span><div><div class="lbl">Edition</div><div class="y">002</div></div><div><div class="lbl">Sealed</div><h4>Consciousness &amp; self-definition</h4></div></div>
+      <div class="ed"><span class="lock"></span><div><div class="lbl">Edition</div><div class="y">003</div></div><div><div class="lbl">Sealed</div><h4>Care, and health as freedom</h4></div></div>
+      <div class="ed"><span class="lock"></span><div><div class="lbl">Edition</div><div class="y">004</div></div><div><div class="lbl">Sealed</div><h4>Dignity &amp; economic justice</h4></div></div>
+      <div class="ed"><span class="lock"></span><div><div class="lbl">Edition</div><div class="y">005</div></div><div><div class="lbl">Sealed</div><h4>Education &amp; women's leadership</h4></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="adinkra-wrap"><img class="adinkra" src="img/adinkra.png" alt=""></div>
+
+<!-- JOIN -->
+<section class="join ivory grain" id="join">
+  <img class="horn l" src="img/horn-left.jpg" alt="">
+  <img class="horn r" src="img/horn-right.jpg" alt="">
+  <div class="wrap">
+    <div class="sec-head rv" style="justify-content:center"><span class="spark"></span><span class="label">Join the Universe</span><span class="spark"></span></div>
+    <h2 class="rv d1">Rejoice<br><em>with us.</em></h2>
+    <p class="lede rv d2">Every artist unlock, ticket drop and festival-world reveal lands on Instagram first. Follow along and be first through the gates.</p>
+    <div class="cta-row rv d3">
+      <a href="https://www.instagram.com/ulani_festival/" class="btn btn-dark" target="_blank" rel="noopener">Follow @ulani_festival →</a>
+      <a href="https://www.instagram.com/ulani_festival/" class="btn btn-line" target="_blank" rel="noopener">Partner with us</a>
+    </div>
+    <div class="partner-tiles rv d4">
+      <span>Legacy &amp; Education</span><span>Sound &amp; Performance</span><span>Fashion · Beauty · Design</span><span>Food &amp; Hospitality</span><span>Tech &amp; Connectivity</span><span>Community Access</span>
+    </div>
+    <div class="values rv d4"><span>Joy</span><span>Culture</span><span>Freedom</span><span>Heritage</span><span>Future</span></div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot">
+    <div>
+      <a href="#top" class="brand">ULANI</a>
+      <p>The African Cultural Experience. An experience curated by Ha'adam × BlaqDaisy Events.</p>
+    </div>
+    <div class="foot-links">
+      <a href="https://www.hadamm.com" target="_blank" rel="noopener">Ha'adam</a>
+      <a href="https://www.blaqdaisy.co.za" target="_blank" rel="noopener">BlaqDaisy Events</a>
+      <a href="https://www.instagram.com/ulani_festival/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+  <p class="fine">Date, venue and programme subject to final confirmation. © ULANI. All rights reserved.</p>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>innerHeight*.85),{passive:true});
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+// countdown: 20 March 2027, 11:30 SAST (UTC+2)
+const target=Date.UTC(2027,2,20,9,30,0), pad=n=>String(n).padStart(2,'0');
+function tick(){let d=Math.max(0,target-Date.now());const D=Math.floor(d/864e5);d-=D*864e5;const h=Math.floor(d/36e5);d-=h*36e5;const m=Math.floor(d/6e4);d-=m*6e4;
+  document.getElementById('cd-d').textContent=D;document.getElementById('cd-h').textContent=pad(h);document.getElementById('cd-m').textContent=pad(m);document.getElementById('cd-s').textContent=pad(Math.floor(d/1e3))}
+tick();setInterval(tick,1000);
+
+// hero horn parallax
+const hL=document.getElementById('hornL'),hR=document.getElementById('hornR');
+addEventListener('scroll',()=>{const y=Math.min(scrollY,innerHeight);hL.style.transform=`translate(${-y*.12}px,${y*.08}px)`;hR.style.transform=`translate(${y*.12}px,${y*.08}px)`},{passive:true});
+
+// passport
+document.getElementById('passcard').addEventListener('click',()=>{const off=[...document.querySelectorAll('.stamp:not(.on)')];
+  if(!off.length){document.querySelectorAll('.stamp').forEach(s=>s.classList.remove('on'));return}off[0].classList.add('on')});
+
+
+// chapter cards: beaded bloom artwork per palette
+const NS='http://www.w3.org/2000/svg';
+function rnd(seed){return()=>{seed=(seed*16807)%2147483647;return(seed-1)/2147483646}}
+function el(t,a,parent){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);parent&&parent.appendChild(e);return e}
+document.querySelectorAll('.card').forEach((card,ci)=>{
+  const pal=card.dataset.pal.split(','), svg=card.querySelector('svg.art'), R=rnd(ci*977+13);
+  const defs=el('defs',{},svg);
+  pal.forEach((c,i)=>{const g=el('radialGradient',{id:`b${ci}-${i}`,cx:'35%',cy:'30%',r:'70%'},defs);
+    el('stop',{offset:'0%','stop-color':'#fff','stop-opacity':'.75'},g);el('stop',{offset:'35%','stop-color':c},g);el('stop',{offset:'100%','stop-color':c,'stop-opacity':'1'},g)});
+  const sg=el('linearGradient',{id:`s${ci}`,x1:0,y1:0,x2:0,y2:1},defs);
+  el('stop',{offset:'0%','stop-color':'#2a1d12'},sg);el('stop',{offset:'100%','stop-color':'#0b0a08'},sg);
+  // silhouette
+  el('path',{d:'M70 330 C80 262 140 228 200 228 C260 228 320 262 330 330Z',fill:`url(#s${ci})`},svg);
+  el('rect',{x:182,y:186,width:36,height:50,rx:10,fill:`url(#s${ci})`},svg);
+  el('ellipse',{cx:200,cy:132,rx:52,ry:64,fill:`url(#s${ci})`},svg);
+  // headwrap hint in palette
+  el('path',{d:'M146 120 C150 62 250 62 254 120 C240 96 160 96 146 120Z',fill:pal[1],opacity:.9},svg);
+  el('path',{d:'M150 110 C165 84 235 84 250 110',stroke:pal[3],'stroke-width':5,fill:'none',opacity:.8},svg);
+  const q=el('text',{x:200,y:172,'text-anchor':'middle',class:'qm'},null);q.textContent='?';
+  card._q=q;
+  const bead=(x,y,r,i)=>el('circle',{cx:x.toFixed(1),cy:y.toFixed(1),r:r.toFixed(1),fill:`url(#b${ci}-${i})`},svg);
+  function leaf(x,y,a,c){const g=el('g',{transform:`translate(${x} ${y}) rotate(${a})`},svg);
+    el('ellipse',{cx:0,cy:-22,rx:9,ry:24,fill:c,opacity:.95},g);
+    for(let k=0;k<7;k++)el('line',{x1:0,y1:-4-k*6,x2:7-k*.5,y2:-9-k*6,stroke:'rgba(255,255,255,.28)','stroke-width':1.2},g)}
+  function flower(x,y,s,pi){const n=8;for(let k=0;k<n;k++){const a=k/n*Math.PI*2;
+      const g=el('g',{transform:`translate(${x} ${y}) rotate(${a*57.3})`},svg);
+      el('ellipse',{cx:0,cy:-s*.95,rx:s*.42,ry:s*.7,fill:pal[pi],opacity:.95},g);
+      for(let j=0;j<4;j++)el('circle',{cx:0,cy:-s*(.45+j*.28),r:s*.08,fill:'rgba(255,255,255,.35)'},g)}
+    bead(x,y,s*.38,4);for(let k=0;k<6;k++){const a=k/6*6.28;bead(x+Math.cos(a)*s*.5,y+Math.sin(a)*s*.5,s*.13,3)}}
+  for(const side of [-1,1]){
+    const cx=200+side*112, cy=262;
+    for(let k=0;k<7;k++)leaf(cx+side*(R()*70-10),cy+R()*50-10,side*(20+R()*110)+(R()<.5?0:180),pal[2]);
+    for(let k=0;k<26;k++){const a=R()*6.28,d=30+R()*70;bead(cx+Math.cos(a)*d*1.2,cy+Math.sin(a)*d*.75-10,3+R()*6,Math.floor(R()*pal.length))}
+    flower(cx+side*18,cy-8,30,0);flower(cx-side*38,cy+38,22,R()<.5?4:0);flower(cx+side*70,cy+40,20,0);
+    for(let k=0;k<14;k++){const a=R()*6.28,d=20+R()*60;bead(cx+Math.cos(a)*d,cy+Math.sin(a)*d*.6+10,2+R()*3.5,3)}
+  }
+  svg.appendChild(card._q);
+  const flip=()=>card.classList.toggle('flipped');
+  card.addEventListener('click',flip);
+  card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flip()}});
+});
+
+// gold sparkles in green sections
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('canvas.sparkles').forEach(c=>{
+  const x=c.getContext('2d');let W,H,P=[];
+  function size(){const r=devicePixelRatio||1;W=c.width=c.offsetWidth*r;H=c.height=c.offsetHeight*r;
+    P=Array.from({length:Math.round(W*H/26000)},()=>({x:Math.random()*W,y:Math.random()*H,s:(Math.random()*1.4+.4)*r,p:Math.random()*6.28,v:.006+Math.random()*.02,big:Math.random()<.06}))}
+  function star(px,py,R){x.beginPath();x.moveTo(px,py-R);x.quadraticCurveTo(px,py,px+R,py);x.quadraticCurveTo(px,py,px,py+R);x.quadraticCurveTo(px,py,px-R,py);x.quadraticCurveTo(px,py,px,py-R);x.fill()}
+  let vis=false;new IntersectionObserver(e=>{vis=e[0].isIntersecting}).observe(c);
+  function draw(){if(vis){x.clearRect(0,0,W,H);for(const p of P){p.p+=p.v;const a=Math.max(0,Math.sin(p.p));x.globalAlpha=a*.85;x.fillStyle='#f2d491';
+      if(p.big)star(p.x,p.y,p.s*5*a+1);else{x.beginPath();x.arc(p.x,p.y,p.s,0,6.28);x.fill()}}}requestAnimationFrame(draw)}
+  size();addEventListener('resize',size);if(!reduce)draw();
+});
+</script>
+</body>
+</html>
