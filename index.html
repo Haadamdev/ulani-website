@@ -20,7 +20,7 @@
   --sans:'Montserrat', system-ui, sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:var(--navh,76px)}
 body{background:var(--black);color:var(--cream);font-family:var(--serif);font-size:19px;line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 img{display:block;max-width:100%}
@@ -643,6 +643,7 @@ footer{background:var(--black);padding:56px clamp(20px,5vw,64px) 36px;border-top
 
 <script>
 const nav=document.getElementById('nav');
+const setNavH=()=>document.documentElement.style.setProperty('--navh',nav.offsetHeight+'px');setNavH();addEventListener('resize',setNavH);
 const setNav=()=>nav.classList.toggle('scrolled',scrollY>8);addEventListener('scroll',setNav,{passive:true});setNav();
 
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
